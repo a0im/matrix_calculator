@@ -175,7 +175,7 @@ const multiFn : TcalcOption = (v1,v2) => {
 }
 
 //각 버튼의 해당하는 함수를 실행
-function controlFunctions( e:Event ) {
+const controlFunctions= ( e:Event ) => {
   let target : string = ""
 
   if (e.target instanceof HTMLElement && e.target != undefined) {
