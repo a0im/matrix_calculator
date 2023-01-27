@@ -114,28 +114,21 @@ const printCalcValue = cbFn => {
 };
 //printCalcValue callbackFn
 const sunFn = (v1, v2) => {
-    $resultTable.classList.remove('add', 'sub', 'multi');
-    $resultTable.classList.add('add');
     return Number(v1) + Number(v2);
 };
 const subFn = (v1, v2) => {
-    $resultTable.classList.remove('add', 'sub', 'multi');
-    $resultTable.classList.add('sub');
     return Number(v1) - Number(v2);
 };
 const multiFn = (v1, v2) => {
-    $resultTable.classList.remove('add', 'sub', 'multi');
-    $resultTable.classList.add('multi');
     return Number(v1) * Number(v2);
 };
 //각 버튼의 해당하는 함수를 실행
-function controlFunctions(e) {
+const controlFunctions = (e) => {
+    let tar = e.target;
     let target = "";
-    if (e.target instanceof HTMLElement && e.target != undefined) {
-        target = e.target.className;
-    }
-    if (e.target instanceof HTMLDivElement && e.target.dataset.type != undefined) {
-        calcText = e.target.dataset.type;
+    target = tar.className;
+    if (tar.dataset.type !== undefined) {
+        calcText = tar.dataset.type;
     }
     if (target == "create-btn") {
         let empty = false;
@@ -166,5 +159,5 @@ function controlFunctions(e) {
     else if (["random-btn", "sum-btn", "sub-btn", "multi-btn"].includes(target)) {
         pushErrorTxt("생성된 테이블이 없습니다.<br>테이블을 생성하세요."); //check null value 
     }
-}
+};
 $btns === null || $btns === void 0 ? void 0 : $btns.addEventListener('click', controlFunctions);

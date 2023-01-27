@@ -159,32 +159,25 @@ const printCalcValue:TcalcProps = cbFn => {
 
 //printCalcValue callbackFn
 const sunFn : TcalcOption = (v1,v2) =>{
-  $resultTable.classList.remove('add','sub','multi')
-  $resultTable.classList.add('add')
   return Number(v1) + Number(v2)
 }
 const subFn : TcalcOption = (v1,v2) =>{
-  $resultTable.classList.remove('add','sub','multi')
-  $resultTable.classList.add('sub')
   return Number(v1) - Number(v2)
 }
 const multiFn : TcalcOption = (v1,v2) => {
-  $resultTable.classList.remove('add','sub','multi')
-  $resultTable.classList.add('multi')
   return Number(v1) * Number(v2)
 }
 
 //각 버튼의 해당하는 함수를 실행
 const controlFunctions= ( e:Event ) => {
+  let tar = e.target as HTMLDivElement
   let target : string = ""
 
-  if (e.target instanceof HTMLElement && e.target != undefined) {
-    target = e.target.className
+  target = tar.className
+  if (tar.dataset.type !== undefined) {
+    calcText = tar.dataset.type
   }
-
-  if (e.target instanceof HTMLDivElement && e.target.dataset.type != undefined) {
-    calcText = e.target.dataset.type
-  }
+  
 
 
   if(target ==  "create-btn") {
